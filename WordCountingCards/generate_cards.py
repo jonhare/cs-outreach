@@ -14,9 +14,9 @@ words = text.split(" ")
 ncards = 40	# this is the number of cards that will be produced
 samples = []
 
-for x in xrange(0,len(words)):
+for x in range(0,len(words)):
 	numsamples = len(words) - x
-	for y in xrange(0,numsamples):
+	for y in range(0,numsamples):
 		samples.append(words[x])
 
 shuffle(samples)
@@ -26,7 +26,7 @@ max_per_card = 10
 
 cardcounts = []
 sum = 0
-for x in xrange(0,ncards):
+for x in range(0,ncards):
 	rnd = randint(min_per_card, max_per_card)
 	cardcounts.append(rnd)
 	sum+=rnd
@@ -45,9 +45,9 @@ while sum > len(samples):
 
 cards = []
 index = 0
-for x in xrange(0,ncards):
+for x in range(0,ncards):
 	card = []
-	for y in xrange(0,cardcounts[x]):
+	for y in range(0,cardcounts[x]):
 		card.append(samples[index])
 		index+=1
 	cards.append(card)
@@ -85,16 +85,16 @@ cardheight=84 # card height in mm
 x=0
 y=0
 pdf.add_page()
-for j in xrange(0, len(cards)):
+for j in range(0, len(cards)):
 	card = cards[j]
-	pdf.rect(startx + x*cardwidth, starty[y], cardwidth, cardheight)
+	# pdf.rect(startx + x*cardwidth, starty[y], cardwidth, cardheight)
 	pdf.set_font('Arial', 'B', textsize)
 	
 	# pdf.set_x(startx + x*54)
 	# pdf.set_y(starty[y])
 
 	cy = (cardheight - len(card) * cellheight) / 2
-	for i in xrange(0, len(card)):
+	for i in range(0, len(card)):
 		pdf.set_xy(startx + x*cardwidth, starty[y] + i*cellheight + cy)
 		pdf.cell(w=54, h=cellheight, txt=card[i], border=0, align='C', fill=False)
 	x+=1
